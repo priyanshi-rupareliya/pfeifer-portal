@@ -1,4 +1,5 @@
 import {
+    GET_ALL_SESSIONS_URL,
     GET_SESSION_MESSAGES_URL,
     GET_USERS_SESSIONS_URL,
     GET_USERS_URL,
@@ -33,6 +34,20 @@ export async function getUsers(page, limit) {
 export async function getUserSessions(page, limit, userId) {
     return fetch(
         `${GET_USERS_SESSIONS_URL}?userId=${userId}&page=${page}&limit=${limit}`,
+        {
+            method: "GET",
+            headers: {
+                Authorization: localStorage.getItem("sessionToken"),
+            },
+        }
+    ).then((response) => {
+        return response.json();
+    });
+}
+
+export async function getAllSessions(page, limit, userId) {
+    return fetch(
+        `${GET_ALL_SESSIONS_URL}?page=${page}&limit=${limit}`,
         {
             method: "GET",
             headers: {
