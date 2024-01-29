@@ -28,7 +28,7 @@ const UserSessionsView = () => {
     const [rowsPerPage, setRowsPerPage] = useState(10);
     const [selectedPage, setSelectedPage] = useState(1);
     const navigate = useNavigate();
-    const { data: result, refetch, isFetching } = useQuery("userSessions", () => getUserSessions(selectedPage, rowsPerPage, userId))
+    const { data: result, refetch, isFetching } = useQuery("userSessions", () => getUserSessions(selectedPage, rowsPerPage, userId));
 
     useEffect(() => {
         if (!isFetching) {
@@ -37,7 +37,7 @@ const UserSessionsView = () => {
     }, [rowsPerPage, selectedPage])
 
     const onRowClick = (row) => {
-        navigate(`${SESSION_CHAT_PAGE.url}?id=${row.id}`);
+        navigate(`${SESSION_CHAT_PAGE.url}?id=${row.id}&name=${row.name}`);
     }
 
     const handleChangePage = (e, data) => {
@@ -63,7 +63,8 @@ const UserSessionsView = () => {
                         <Table sx={{ minWidth: 650 }} aria-label="simple table">
                             <TableHead>
                                 <TableRow>
-                                    <TableCell className="font-weight-bold">{i18next.t("email")}</TableCell>
+                                    <TableCell className="font-weight-bold">{i18next.t("name")}</TableCell>
+                                    <TableCell className="font-weight-bold" align="center">{i18next.t("email")}</TableCell>
                                     <TableCell className="font-weight-bold" align="center">{i18next.t("Magento User")}</TableCell>
                                     <TableCell className="font-weight-bold" align="center">{i18next.t("createdAt")}</TableCell>
                                 </TableRow>
@@ -71,7 +72,8 @@ const UserSessionsView = () => {
                             <TableBody>
                                 { !isFetching && result?.sessions?.map((row, index) => (
                                     <TableRow key={row.id} onClick={() => onRowClick(row)} className="hover">
-                                        <TableCell component="th" scope="row">{row.email}</TableCell>
+                                        <TableCell component="th" scope="row">{row.name}</TableCell>
+                                        <TableCell align="center">{row.email}</TableCell>
                                         <TableCell align="center">{row.isExistingUser ? "Yes" : "No"}</TableCell>
                                         <TableCell align="center">{ moment(row.createdAt).format("lll") }</TableCell>
                                     </TableRow>
@@ -106,6 +108,12 @@ const UserSessionsView = () => {
 
                         { isFetching && <div className="p-3 text-center">
                                 <CircularProgress size={30} color="inherit"/>
+                            </div>
+                        }
+
+
+                        { !isFetching && result?.sessions.length <= 0  && <div className="p-3 text-center">
+                                No Data Available
                             </div>
                         }
                         

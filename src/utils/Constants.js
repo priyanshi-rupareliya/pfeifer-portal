@@ -42,9 +42,9 @@ export const SESSION_CHAT_PAGE = {
 export const items = [USERS_PAGE, ALL_SESSION_PAGE];
 
 export const getLoggedInUser = () => {
-    const medicardLoggedInUser = localStorage.getItem(localStorageUserKey);
-    if (medicardLoggedInUser) {
-        return JSON.parse(medicardLoggedInUser);
+    const pfeiferPortalLoggedInUser = localStorage.getItem(localStorageUserKey);
+    if (pfeiferPortalLoggedInUser) {
+        return JSON.parse(pfeiferPortalLoggedInUser);
     }
     return undefined;
 };

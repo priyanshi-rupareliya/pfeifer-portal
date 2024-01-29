@@ -139,6 +139,11 @@ const UsersComponent = () => {
                                 <CircularProgress size={30} color="inherit"/>
                             </div>
                         }
+
+                        { !isFetching &&  result?.users.length <= 0  && <div className="p-3 text-center">
+                                No Data Available
+                            </div>
+                        }
                         
                     </TableContainer>
                 </div>

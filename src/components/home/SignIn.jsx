@@ -26,7 +26,7 @@ function SignIn() {
     useEffect(() => {
         const data = getLoggedInUser();
         if (data) {
-            asd(data.role);
+            asd();
         }
     })
 

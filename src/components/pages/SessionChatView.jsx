@@ -8,11 +8,13 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
+import { CircularProgress } from "@mui/material";
 
 function SessionChatView(props) {
     const location = useLocation();
     const query = new URLSearchParams(location.search);
     const [conversationId] = useState(query.get("id"));
+    const [name] = useState(query.get("name"));
     const { data: result, refetch, isFetching } = useQuery("sessionMessages", () => getSessionMessages(conversationId))
 
     function renderMessages() {
@@ -60,7 +62,15 @@ function SessionChatView(props) {
     return (
         <div className="row chat-message-container m-0 p-4">
             <div className="col-6 mx-auto">
+                <h3>
+                    {name}
+                </h3><hr className="chatMessage-hr"></hr>
                 {renderMessages()}
+
+                { isFetching && <div className="p-3 text-center">
+                        <CircularProgress size={30} color="inherit"/>
+                    </div>
+                }
             </div>
         </div>
     );

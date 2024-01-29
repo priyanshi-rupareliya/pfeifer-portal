@@ -1,5 +1,5 @@
 import "./App.css";
-import "./SB-Admin.css";
+import "./Admin.css";
 import MainComponent from "./components/MainComponent";
 
 function App() {

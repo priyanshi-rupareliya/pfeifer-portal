@@ -42,7 +42,7 @@ function AppHeader(props) {
         return menuItems.map((item, index) => {
             
             const cssClass = classNames("menu-item", {
-                "menu-item-active": pathName.endsWith(item.url),
+                "menu-item-active": pathName === item.url,
             })
 
             return <Link className={cssClass} to={item.url} key={index} onClick={onItemClick} relative="path">
