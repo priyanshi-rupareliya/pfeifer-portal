@@ -11,6 +11,8 @@ export const GET_ALL_SESSIONS_URL = `${API_URL}/api/v1/getAllSessions`;
 
 export const GET_SESSION_MESSAGES_URL = `${API_URL}/api/v1/getSessionMessages`;
 
+export const GET_SESSIONS_CSV_DATA_URL = `${API_URL}/api/v1/getSessionsCSVData`;
+
 const localStorageUserKey = "pfeiferPortalLoggedInUser";
 
 

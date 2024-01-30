@@ -1,5 +1,6 @@
 import {
     GET_ALL_SESSIONS_URL,
+    GET_SESSIONS_CSV_DATA_URL,
     GET_SESSION_MESSAGES_URL,
     GET_USERS_SESSIONS_URL,
     GET_USERS_URL,
@@ -48,6 +49,20 @@ export async function getUserSessions(page, limit, userId) {
 export async function getAllSessions(page, limit, userId) {
     return fetch(
         `${GET_ALL_SESSIONS_URL}?page=${page}&limit=${limit}`,
+        {
+            method: "GET",
+            headers: {
+                Authorization: localStorage.getItem("sessionToken"),
+            },
+        }
+    ).then((response) => {
+        return response.json();
+    });
+}
+
+export async function getSessionsCSVData() {
+    return fetch(
+        `${GET_SESSIONS_CSV_DATA_URL}`,
         {
             method: "GET",
             headers: {

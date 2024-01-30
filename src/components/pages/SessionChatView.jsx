@@ -24,7 +24,7 @@ function SessionChatView(props) {
             if (item.type === 'text') {
 
                 return <div key={`message-${index}`} className={cssClassName}>
-                    <div className="message-content">{parse(item.message)}</div>
+                    <div className="message-content">{item.message}</div>
                 </div>
             } else if (item.type === 'search') {
                 const message = JSON.parse(item.message);
@@ -62,17 +62,28 @@ function SessionChatView(props) {
     return (
         <div className="row chat-message-container m-0 p-4">
             <div className="col-6 mx-auto">
-                <h3>
-                    {name}
-                </h3><hr className="chatMessage-hr"></hr>
-                {renderMessages()}
-
-                { isFetching && <div className="p-3 text-center">
-                        <CircularProgress size={30} color="inherit"/>
-                    </div>
+                {
+                result?.length > 0 && <div>
+                    <h3>
+                        {name}
+                    </h3>
+                    <hr className="chatMessage-hr"></hr>
+                    {renderMessages()}
+                </div>
                 }
+        
+                { isFetching && <div className="p-3 text-center">
+                    <CircularProgress size={30} color="inherit" />
+                </div>
+                }
+        
+                { !isFetching && result?.length <= 0 && <div className="p-3 text-center">
+                    No Data Available
             </div>
+            }
+        
         </div>
-    );
+        </div>
+        );
 }
 export default SessionChatView;
