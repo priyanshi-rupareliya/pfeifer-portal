@@ -6,22 +6,13 @@ i18next.init({
     en: {
       translation: {
         "logout": "Logout",
-        "documentId": "Document ID",
         "name": "Name",
         "type": "Type",
         "date": "Date",
-        "status": "Status",
         "firstname": "First Name",
         "lastname": "Last Name",
         "email": "Email",
-        "role": "Role",
-        "documentName": "Document Name",
-        "documentType": "Document Type",
         "uploadDate": "Upload Date",
-        "hospitalId": "Hospital ID",
-        "hospitalName": "Hospital Name",
-        "hospitalType": "Hospital Type",
-        
       }
     }
   }

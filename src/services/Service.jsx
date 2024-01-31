@@ -6,6 +6,7 @@ import {
     GET_USERS_URL,
     SIGN_IN_URL,
 } from "../utils/Constants";
+import moment from "moment";
 
 export function signInUser({ username, password} ) {
     const payload = {
@@ -46,9 +47,14 @@ export async function getUserSessions(page, limit, userId) {
     });
 }
 
-export async function getAllSessions(page, limit, userId) {
+export async function getAllSessions(page, limit, dateRange) {
+    let startDate = dateRange[0], endDate = dateRange[1];
+    
+    startDate = startDate? moment(startDate).format('YYYY-MM-DD') : '';
+    endDate =  endDate ? moment(endDate).format('YYYY-MM-DD') : '';
+
     return fetch(
-        `${GET_ALL_SESSIONS_URL}?page=${page}&limit=${limit}`,
+        `${GET_ALL_SESSIONS_URL}?page=${page}&limit=${limit}&startDate=${startDate}&endDate=${endDate}`,
         {
             method: "GET",
             headers: {

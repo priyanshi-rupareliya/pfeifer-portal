@@ -68,6 +68,7 @@ const UserSessionsView = () => {
                                     <TableCell className="font-weight-bold" align="center">{i18next.t("Magento User")}</TableCell>
                                     <TableCell className="font-weight-bold" align="center">{i18next.t("Contacted Agent")}</TableCell>
                                     <TableCell className="font-weight-bold" align="center">{i18next.t("Performed AddToCart")}</TableCell>
+                                    <TableCell className="font-weight-bold" align="center">{i18next.t("Source")}</TableCell>
                                     <TableCell className="font-weight-bold" align="center">{i18next.t("createdAt")}</TableCell>
                                 </TableRow>
                             </TableHead>
@@ -79,6 +80,7 @@ const UserSessionsView = () => {
                                         <TableCell align="center">{row.isExistingUser ? "Yes" : "No"}</TableCell>
                                         <TableCell align="center">{row.contactedAgent ? "Yes" : "No"}</TableCell>
                                         <TableCell align="center">{row.addToCart ? "Yes" : "No"}</TableCell>
+                                        <TableCell align="center">{row.source ? row.source : '-'}</TableCell>
                                         <TableCell align="center">{ moment(row.createdAt).format("lll") }</TableCell>
                                     </TableRow>
                                 ))}
